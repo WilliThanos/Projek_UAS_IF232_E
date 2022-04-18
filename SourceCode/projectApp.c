@@ -58,7 +58,6 @@ struct User
     char location[30];
 };
 
-
 printf ("\n");
 printf ("------PROGRAM STUDI INFORMATIKA------\n");
 printf ("------FAKULTAS TEKNIK DAN INFORMATIKA------\n")
