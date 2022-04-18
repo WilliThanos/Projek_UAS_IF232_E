@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <conio.h>
-
+// test
 typedef struct Stasiun
 {
     int idStasiun;
