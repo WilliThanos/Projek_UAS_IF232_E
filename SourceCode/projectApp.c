@@ -67,10 +67,10 @@ printf ("\n");
 printf ("------------------------------------------\n");
 
 printf ("KERETA YANG TERSEDIA!\n");
-printf ("1. A\n");
-printf ("2. B\n");
-printf ("3. C\n");
-printf ("4. D\n");
+printf ("1. Cendana\n");
+printf ("2. Melati\n");
+printf ("3. Mawar\n");
+printf ("4. Rose\n");
 printf ("Silahkan pilih kereta yang anda inginkan: \n");
 scanf ("%i", &idkereta);
 printf ("Tekan enter untuk melanjutkan...\n");
@@ -78,11 +78,35 @@ printf ("Tekan enter untuk melanjutkan...\n");
 printf ("TYPE YANG TERSEDIA!\n");
 printf ("1. Eksekutif\n");
 printf ("2. Bisnis\n");
-printf ("Ekonimi\n");
+printf ("3. Ekonimi\n");
 printf ("Silahkan pilih type kereta yang anda inginkan: \n");
 scanf ("%i", &Type);
 printf ("Tekan enter untuk melanjutkan...\n");
 
 if (idKereta == 1){
-    strcpy (Kereta)
+    strcpy (Kereta, "Cendana");
+    if(Type == 1) harga = 200000;
+        else if(Type == 2) harga = 120000;
+            else harga = 80000;
+}
+
+if (idKereta == 2){
+    strcpy (Kereta, "Melati");
+    if(Type == 1) harga = 150000;
+        else if(Type == 2) harga = 100000;
+            else harga = 950000;
+}
+
+if (idKereta == 3){
+    strcpy (Kereta, "Mawar");
+    if(Type == 1) harga = 170000;
+        else if(Type == 2) harga = 90000;
+            else harga = 80000;
+}
+
+if (idKereta == 4){
+    strcpy (Kereta, "Rose");
+    if(Type == 1) harga = 120000;
+        else if(Type == 2) harga = 80000;
+            else harga = 60000;
 }
