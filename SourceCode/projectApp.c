@@ -52,12 +52,6 @@ typedef struct
 //     // Hapus data ticket;
 // };
 
-typedef struct
-{
-    char username[20];
-    char password[20];
-    char location[30];
-}User;
 
 void TiketKeretaUser(){
   printf("Menu Tiket Kereta User\n");
@@ -91,31 +85,101 @@ void pesanTiket(){
 }
 
 
+// ===============   Section Login   ===========================
+typedef struct{
+    char username[20];
+    char password[20];
+    char location[20];
+}USERDATA;
+
+//Login == Signup
+void login(){
+    int i, j, a=0, idCheck, passCheck;
+    char userid[20], password[10], ch, rd;
+    USERDATA userArr[20];
+
+
+    //preparing .txt file to read
+    char *userData = "user.txt";
+    FILE *fp = fopen(userData, "r");
+
+    if(fp == NULL){
+        printf("\n\n\n\t\t\t\t\tError: Couldn't open file %s\n\n\n\n\n\n\n", userData);
+        printf("\n\n\n\t\t\t\t\tPress enter to continue\n\t\t\t\t\t");
+
+        return 1;
+    }
+
+    while(!feof(fp)){
+        USERDATA newUser;
+        fscanf(fp, "%[^#]#%[^#]", newUser.username, newUser.password);
+        userArr[a] = newUser;                                                   //blom bisa klo user di txt ny 2
+        a++;
+    }
+    fclose(fp);
+
+    printf("\n\n\n\t\t\t\t\t=============    login    =============\n\n\n\n\n\n\n");
+    printf("\t\t\t\t\t username/email   :    ");scanf("%s", &userid);
+    printf("\t\t\t\t\t password         :    ");scanf("%s", &password);
+
+    for(j=0; j < a; j++){
+
+        idCheck = strcmp(userArr[j].username, userid);
+        passCheck = strcmp(userArr[j].password, password);
+
+        if(idCheck == 0 && passCheck == 0){
+            printf("\n\n\n\t\t\t\t\t Login sudah berhasil    ");
+        } else {
+
+            printf("\n\n\n\t\t\t\t\t Data tidak tersedia, mari Signup\n");
+            printf("\n\n\n\t\t\t\t\t Press anything to continue..\n\n");
+
+
+        }
+
+    }
+
+}
+
+void signup(){
+    char userid[20], password[20];
+    printf("\n\n\n\t\t\t\t\t=============   signup   =============\n\n\n\n\n\n\n");
+    printf("\t\t\t\t\t username/email   :    ");scanf(" %s", &userid);
+    printf("\t\t\t\t\t password         :    ");scanf(" %s", &password);
+
+    //check if exist in document
+    //blm jadi, coming soon
+}
+
+
 void menuUtama(){
   int pilihanMenu;
-  printf ("----------     PROGRAM STUDI INFORMATIKA   ----------\n");
-  printf ("---------- FAKULTAS TEKNIK DAN INFORMATIKA ----------\n");
-  printf ("----------  PROGRAM PEMESANAN TIKET KERETA ----------\n");
-  printf ("-----------------------------------------------------\n");
-  printf ("\n");
-  printf("1. Pesan Tiket Kereta\n"); //fungsi buat pesen kereta
-  printf("2. Tiket Kereta Saya\n"); //bisa liat tiket kereta, sort per waktu/daerah tujuan
-  printf("3. Exit\n"); //diganti logout nanti klo dah bisa bikin akun?
+      while(1){
 
-  printf("\n\nPilih Menu: "); scanf("%d", &pilihanMenu);
-  switch(pilihanMenu){
-    case 1:
-      pesanTiket();
-      break;
+        int pMain=0;
+        printf("\n\n\n\t\t\t\t\t=============   Welcome   =============\n\n\n\n\n\n\n");
+        printf("\t\t\t\t\t1. Login                      2. Signup\n");
+        printf("\t\t\t\t\tPilihan: "); scanf("%d", &pMain);
 
-    case 2:
-      TiketKeretaUser();
-      break;
+        if(pMain == 1){
+            system("cls");
+            login();
+            getch();
+            system("cls");
+        } else if(pMain == 2){
+            system("cls");
+            signup();
+            getch();
+            system("cls");
+        } else {
+            printf("\n\n\n\t\t\t\t\t==========   Invalid Input   ==========\n");
+            printf("\t\t\t\t\t=====  Press Anything to Continue =====\n\n\n\n\n\n\n");
+            getch();
+            fflush(stdin);
+            system("cls");
 
-    case 3:
-      exit(0);
-  }
-
+        }
+    }
 }
 
 int main(){
