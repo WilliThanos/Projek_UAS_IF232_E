@@ -92,66 +92,6 @@ typedef struct{
     char location[20];
 }USERDATA;
 
-//Login == Signup
-void login(){
-    int i, j, a=0, idCheck, passCheck;
-    char userid[20], password[10], ch, rd;
-    USERDATA userArr[20];
-
-
-    //preparing .txt file to read
-    char *userData = "user.txt";
-    FILE *fp = fopen(userData, "r");
-
-    if(fp == NULL){
-        printf("\n\n\n\t\t\t\t\tError: Couldn't open file %s\n\n\n\n\n\n\n", userData);
-        printf("\n\n\n\t\t\t\t\tPress enter to continue\n\t\t\t\t\t");
-
-        return 1;
-    }
-
-    while(!feof(fp)){
-        USERDATA newUser;
-        fscanf(fp, "%[^#]#%[^#]", newUser.username, newUser.password);
-        userArr[a] = newUser;                                                   //blom bisa klo user di txt ny 2
-        a++;
-    }
-    fclose(fp);
-
-    printf("\n\n\n\t\t\t\t\t=============    login    =============\n\n\n\n\n\n\n");
-    printf("\t\t\t\t\t username/email   :    ");scanf("%s", &userid);
-    printf("\t\t\t\t\t password         :    ");scanf("%s", &password);
-
-    for(j=0; j < a; j++){
-
-        idCheck = strcmp(userArr[j].username, userid);
-        passCheck = strcmp(userArr[j].password, password);
-
-        if(idCheck == 0 && passCheck == 0){
-            printf("\n\n\n\t\t\t\t\t Login sudah berhasil    ");
-        } else {
-
-            printf("\n\n\n\t\t\t\t\t Data tidak tersedia, mari Signup\n");
-            printf("\n\n\n\t\t\t\t\t Press anything to continue..\n\n");
-
-
-        }
-
-    }
-
-}
-
-void signup(){
-    char userid[20], password[20];
-    printf("\n\n\n\t\t\t\t\t=============   signup   =============\n\n\n\n\n\n\n");
-    printf("\t\t\t\t\t username/email   :    ");scanf(" %s", &userid);
-    printf("\t\t\t\t\t password         :    ");scanf(" %s", &password);
-
-    //check if exist in document
-    //blm jadi, coming soon
-}
-
-
 void menuUtama(){
   int pilihanMenu;
       while(1){
@@ -182,11 +122,131 @@ void menuUtama(){
     }
 }
 
+//Login == Signup
+
+void login(){
+    int i, j, a=0, idCheck, passCheck;
+    char userid[20], password[10], ch, rd;
+    USERDATA userArr[20];
+
+
+    //preparing .txt file to read
+    char *userData = "user.txt";
+    FILE *fp = fopen(userData, "r");
+
+    if(fp == NULL){
+        printf("\n\n\n\t\t\t\t\tError: Couldn't open file %s\n\n\n\n\n\n\n", userData);
+        printf("\n\n\n\t\t\t\t\tPress enter to continue\n\t\t\t\t\t");
+
+        return 1;
+    }
+
+    while(!feof(fp)){
+        USERDATA newUser;
+        fscanf(fp, "%[^#]#%[^#]#\n", newUser.username, newUser.password);
+        userArr[a] = newUser;
+        a++;
+    }
+    fclose(fp);
+
+    printf("\n\n\n\t\t\t\t\t=============    login    =============\n\n\n\n\n\n\n");
+    printf("\t\t\t\t\t username/email   :    ");scanf("%s", &userid);//printf("%s", userid);
+    printf("\t\t\t\t\t password         :    ");scanf("%s", &password);//printf("%s", password);
+
+
+    for(j=0; j < a; j++){
+        idCheck = strcmp(userArr[j].username, userid);
+        passCheck = strcmp(userArr[j].password, password);
+
+        if(idCheck == 0 && passCheck == 0){
+            printf("\n\n\n\t\t\t\t\t Login sudah berhasil    ");
+            loginMenu(userid, password);
+            break;
+        } else if(idCheck, passCheck == 1 || idCheck, passCheck == -1){
+            continue;
+        } else {
+            printf("here");
+            system("cls");
+        }
+        printf("\n\n\n\t\t\t\t\t Data tidak tersedia, mari Signup\n");
+        printf("\n\n\n\t\t\t\t\t Press anything to continue..\n\n");
+
+    }
+
+}
+
+void signup(){
+    char userid[20], password[20];
+    printf("\n\n\n\t\t\t\t\t=============   signup   =============\n\n\n\n\n\n\n");
+    printf("\t\t\t\t\t username/email   :    ");scanf(" %s", &userid);
+    printf("\t\t\t\t\t password         :    ");scanf(" %s", &password);
+
+    //check if exist in document
+    //blm jadi, coming soon
+}
+
+void loginMenu(char *userid, char *password){
+    int pilihanMenu;
+    system("cls");
+    while(1){
+        printf("\n\n\n\t\t\t\t\t=============  Welcome   ============= \n");
+        printf("\t\t\t\t        %s!                    \n", userid);
+        printf("\n\n\n\t\t\t\t\t1. Beli tiket                          \n");
+        printf("\t\t\t\t        2. Tiket saya                         \n");
+        printf("\t\t\t\t        3. Batalkan Tiket                     \n");
+        printf("\t\t\t\t        4. Logout                             \n");
+        printf("\t\t\t\t        Pilih: "); scanf("%d", &pilihanMenu);
+        if(pilihanMenu == 1){
+            system("cls");
+            printf("\n\n\n\t\t\t\t\t=============  Beli Tiket   ============= \n");
+            printf("\t\t\t\t        0. Kembali                            \n");
+            printf("\t\t\t\t        Pilih: "); scanf("%d", &pilihanMenu);
+            if(pilihanMenu == 0){
+                system("cls");
+                continue;
+            }
+
+        } else if(pilihanMenu == 2){
+            system("cls");
+            printf("\n\n\n\t\t\t\t\t=============  Tiket Saya     ============= \n");
+            printf("\t\t\t\t        0. Kembali                            \n");
+            printf("\t\t\t\t        Pilih: "); scanf("%d", &pilihanMenu);
+            if(pilihanMenu == 0){
+                system("cls");
+                continue;
+            } else {
+                printf("\n\n\n\t\t\t\t\t==========   Invalid Input   ==========\n");
+                printf("\t\t\t\t\t=====  Press Anything to Continue =====\n\n\n\n\n\n\n");
+                getch();
+                fflush(stdin);
+                system("cls");
+            }
+        } else if(pilihanMenu == 3){
+            system("cls");
+            printf("\n\n\n\t\t\t\t\t=============  Batalkan Tiket      ============= \n");
+            printf("\t\t\t\t        0. Kembali                            \n");
+            printf("\t\t\t\t        Pilih: "); scanf("%d", &pilihanMenu);
+            if(pilihanMenu == 0){
+                system("cls");
+                continue;
+            } else {
+                printf("\n\n\n\t\t\t\t\t==========   Invalid Input   ==========\n");
+                printf("\t\t\t\t\t=====  Press Anything to Continue =====\n\n\n\n\n\n\n");
+                getch();
+                fflush(stdin);
+                system("cls");
+            }
+        } else if(pilihanMenu == 4){
+            system("cls");
+            menuUtama();
+        } else{
+    }
+    }
+}
+
 int main(){
  while(1){
    menuUtama();
  }
-
-
 
 }
