@@ -175,14 +175,25 @@ void login(){
 
 }
 
-void signup(){
-    char userid[20], password[20];
-    printf("\n\n\n\t\t\t\t\t=============   signup   =============\n\n\n\n\n\n\n");
-    printf("\t\t\t\t\t username/email   :    ");scanf(" %s", &userid);
-    printf("\t\t\t\t\t password         :    ");scanf(" %s", &password);
 
+void signup(){
+    char newuserid[20], newpassword[20];
+    printf("\n\n\n\t\t\t\t\t=============   signup   =============\n\n\n\n\n\n\n");
+    printf("\t\t\t\t\t username/email   :    ");scanf(" %s", &newuserid);
+    printf("\t\t\t\t\t password         :    ");scanf(" %s", &newpassword);
+
+     //preparing .txt file to read
+    char *userData = "user.txt";
+    FILE *fp = fopen(userData, "a+w");
+    if(fp == NULL){
+        printf("\n\n\n\t\t\t\t\tError: Couldn't open file %s\n\n\n\n\n\n\n", userData);
+        printf("\n\n\n\t\t\t\t\tPress enter to continue\n\t\t\t\t\t");
+
+        return 1;
+    }
+    fprintf(fp, "\n%s#%s#", newuserid, newpassword);
+    fclose(fp);
     //check if exist in document
-    //blm jadi, coming soon
 }
 
 void loginMenu(char *userid, char *password){
