@@ -76,19 +76,7 @@ void tryingSoHardLoadingBar()
     }
 }
 
-// test
-typedef struct
-{
-    int idStasiun;
-    char namaStasiun[10];
-    int Jarak;
-}Stasiun;
 
-typedef struct
-{
-    int idKereta;
-    char namaKereta[10];
-}Kereta;
 
 typedef struct
 {
