@@ -77,7 +77,7 @@ void tryingSoHardLoadingBar()
 }
 
 
-
+/*
 typedef struct
 {
     int idTiket;
@@ -140,7 +140,7 @@ void pesanTiket(){
     // //scanf ("%i", &Type);
     // printf ("Tekan enter untuk melanjutkan...\n");
 }
-
+*/
 
 // ===============   Section Login   ===========================
 typedef struct{
