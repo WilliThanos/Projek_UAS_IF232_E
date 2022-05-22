@@ -7,6 +7,75 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h>
+
+
+//Progress Bar
+// Function to creating loading bar
+void loadingBar()
+{
+    // 0 - black background,
+    // A - Green Foreground
+    //system("color 0A");
+
+    // Initialize char for printing
+    // loading bar
+    char a = 177, b = 219;
+
+    printf("\n\n\n\n");
+    printf("\n\n\n\n\t\t\t\t\t Loading...\n\n");
+    printf("\t\t\t\t\t\t");
+
+    // Print initial loading bar
+    for (int i = 0; i < 24; i++)
+        printf("%c", a);
+
+    // Set the cursor again starting
+    // point of loading bar
+    printf("\r");
+   printf("\t\t\t\t\t\t");
+
+    // Print loading bar progress
+    for (int i = 0; i < 12; i++) {
+        printf("%c%c", b, b);
+
+        // Sleep for 1 second
+        Sleep(50);
+    }
+}
+
+void tryingSoHardLoadingBar()
+{
+    // 0 - black background,
+    // A - Green Foreground
+    //system("color 0A");
+
+    // Initialize char for printing
+    // loading bar
+    char a = 177, b = 219;
+
+    printf("\n\n\n\n");
+    printf("\n\n\n\n\t\t\t\t\t Loading...\n\n");
+    printf("\t\t\t\t\t\t");
+
+    // Print initial loading bar
+    for (int i = 0; i < 24; i++)
+        printf("%c", a);
+
+    // Set the cursor again starting
+    // point of loading bar
+    printf("\r");
+   printf("\t\t\t\t\t\t");
+
+    // Print loading bar progress
+    for (int i = 0; i < 12; i++) {
+        printf("%c%c", b, b);
+
+        // Sleep for 1 second
+        Sleep(100);
+    }
+}
+
 // test
 typedef struct
 {
@@ -148,32 +217,37 @@ void login(){
         a++;
     }
     fclose(fp);
-
     printf("\n\n\n\t\t\t\t\t=============    login    =============\n\n\n\n\n\n\n");
     printf("\t\t\t\t\t username/email   :    ");scanf("%s", &userid);//printf("%s", userid);
     printf("\t\t\t\t\t password         :    ");scanf("%s", &password);//printf("%s", password);
 
-
+    loadingBar();
+    system("cls");
     for(j=0; j < a; j++){
         idCheck = strcmp(userArr[j].username, userid);
         passCheck = strcmp(userArr[j].password, password);
-
         if(idCheck == 0 && passCheck == 0){
-            printf("\n\n\n\t\t\t\t\t Login sudah berhasil    ");
+            printf("\n\n\n\n\n\n\n\t\t\t\t\t         Login sudah berhasil");
+            Sleep(500);
+            printf("\n\t\t\t\t\t            Selamat datang!     ");
+            Sleep(500);
             loginMenu(userid, password);
             break;
         } else if(idCheck, passCheck == 1 || idCheck, passCheck == -1){
             continue;
         } else {
-            printf("here");
-            system("cls");
+            //log the error
         }
+        printf("\n\n\n\n\n\n\n\n\n\n\n\n");
+        tryingSoHardLoadingBar();
+        system("cls");
         printf("\n\n\n\t\t\t\t\t Data tidak tersedia, mari Signup\n");
-        printf("\n\n\n\t\t\t\t\t Press anything to continue..\n\n");
-
+        printf("\n\t\t\t\t\t Press anything to continue..\n\n");
+        continue;
     }
 
 }
+
 
 
 void signup(){
@@ -198,6 +272,7 @@ void signup(){
 
 void loginMenu(char *userid, char *password){
     int pilihanMenu;
+    char namaStasiun[10];
     system("cls");
     while(1){
         printf("\n\n\n\t\t\t\t\t=============  Welcome   ============= \n");
@@ -210,11 +285,16 @@ void loginMenu(char *userid, char *password){
         if(pilihanMenu == 1){
             system("cls");
             printf("\n\n\n\t\t\t\t\t=============  Beli Tiket   ============= \n");
-            printf("\t\t\t\t        0. Kembali                            \n");
+            printf("\t\t\t\t        0. Kembali           1.Tambah Stasiun    \n");
             printf("\t\t\t\t        Pilih: "); scanf("%d", &pilihanMenu);
             if(pilihanMenu == 0){
                 system("cls");
                 continue;
+            } else if(pilihanMenu == 1){
+               //kosong
+               system("cls");
+               continue;
+
             }
 
         } else if(pilihanMenu == 2){
@@ -249,11 +329,19 @@ void loginMenu(char *userid, char *password){
             }
         } else if(pilihanMenu == 4){
             system("cls");
-            menuUtama();
+            main();
         } else{
+            printf("\n\n\n\t\t\t\t\t==========   Invalid Input   ==========\n");
+            printf("\t\t\t\t\t=====  Press Anything to Continue =====\n\n\n\n\n\n\n");
+            getch();
+            fflush(stdin);
+            system("cls");
+
     }
     }
+
 }
+
 
 int main(){
  while(1){
