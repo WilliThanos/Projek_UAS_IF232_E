@@ -226,16 +226,14 @@ void login(){
         } else {
             //log the error
         }
+
+    }
         printf("\n\n\n\n\n\n\n\n\n\n\n\n");
         tryingSoHardLoadingBar();
         system("cls");
         printf("\n\n\n\t\t\t\t\t Data tidak tersedia, mari Signup\n");
         printf("\n\t\t\t\t\t Press anything to continue..\n\n");
-        continue;
-    }
-
 }
-
 
 
 void signup(){
@@ -255,7 +253,10 @@ void signup(){
     }
     fprintf(fp, "\n%s#%s#", newuserid, newpassword);
     fclose(fp);
-    //check if exist in document
+    printf("\n\n\n\t\t\t\t\t        Signup is succesful      \n");
+    printf("\n\n\n\t\t\t\t\t       Thanks for joining us!    \n");
+
+        //check if exist in document
 }
 
 void loginMenu(char *userid, char *password){
