@@ -326,9 +326,8 @@ void loginMenu(char *userid, char *password){
             fflush(stdin);
             system("cls");
 
+        }
     }
-    }
-
 }
 
 
