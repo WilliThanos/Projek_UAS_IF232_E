@@ -251,7 +251,7 @@ void signup(){
 
         return 1;
     }
-    fprintf(fp, "\n%s#%s#", newuserid, newpassword);
+    fprintf(fp, "%s#%s#\n", newuserid, newpassword);
     fclose(fp);
     printf("\n\n\n\t\t\t\t\t        Signup is succesful      \n");
     printf("\n\n\n\t\t\t\t\t       Thanks for joining us!    \n");
@@ -283,7 +283,12 @@ void loginMenu(char *userid, char *password){
                //kosong
                system("cls");
                continue;
-
+            } else {
+                printf("\n\n\n\t\t\t\t\t==========   Invalid Input   ==========\n");
+                printf("\t\t\t\t\t=====  Press Anything to Continue =====\n\n\n\n\n\n\n");
+                getch();
+                fflush(stdin);
+                system("cls");
             }
 
         } else if(pilihanMenu == 2){
